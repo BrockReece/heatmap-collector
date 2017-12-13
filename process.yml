@@ -1,0 +1,5 @@
+apps:
+ - script   : 'index.js'
+   name     : 'heatmap-collector'
+   exec_mode: 'cluster'
+   instances: -1
