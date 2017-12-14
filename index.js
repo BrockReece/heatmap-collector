@@ -7,8 +7,7 @@ var cors = require('cors');
 app.use(cors());
 
 var client = new elasticsearch.Client({
-  host: '192.168.99.100:9200',
-//   log: 'trace'
+  host: process.env.ELASTIC_HOST || '192.168.99.100:9200',
 });
 
 app.get('/return', function(req, res) {
