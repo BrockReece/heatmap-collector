@@ -1,0 +1,9 @@
+{
+    "apps": [{
+        "name": "heatmap-collector",
+        "script": "index.js",
+        "env": {
+            "production": true
+        }
+    }]
+}
