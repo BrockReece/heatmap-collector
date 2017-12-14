@@ -7,7 +7,7 @@ var cors = require('cors');
 app.use(cors());
 
 var client = new elasticsearch.Client({
-  host: process.env.ELASTIC_HOST || '192.168.99.100:9200',
+    host: process.env.ELASTIC_HOST || '192.168.99.100:9200',
 });
 
 app.get('/return', function(req, res) {
@@ -56,20 +56,20 @@ app.get('/return', function(req, res) {
 })
 
 io.on('connection', function(socket){
-  console.log('a user connected');
-  socket.on('disconnect', function(){
-    console.log('user disconnected');
-  });
+    console.log('a user connected');
+    socket.on('disconnect', function(){
+        console.log('user disconnected');
+    });
 
-  socket.on('mouse event', (body) => {
-    client.index({
-        index: 'heatmap-collector',
-        type: 'mouse-activity',
-        body,
+    socket.on('mouse event', (body) => {
+        client.index({
+            index: 'heatmap-collector',
+            type: 'mouse-activity',
+            body,
+        })
     })
-  })
 });
 
 http.listen(3000, function(){
-  console.log('listening on *:3000');
+    console.log('listening on *:3000');
 });
