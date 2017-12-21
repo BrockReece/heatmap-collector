@@ -13,6 +13,7 @@ var client = new elasticsearch.Client({
 app.get('/return', function(req, res) {
     client.search({
         index: 'heatmap-collector',
+        type: 'mouse-activity',
         body: {
             "aggs": {
             "cordinates-x": {
