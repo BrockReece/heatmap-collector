@@ -1,6 +1,6 @@
 {
   "name": "heatmap-collector",
-  "version": "1.0.0-0",
+  "version": "2.0.0-0",
   "description": "A collector application for mouse and scroll events",
   "dependencies": {
     "cors": "^2.8.4",
