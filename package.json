@@ -1,11 +1,11 @@
 {
-    "name": "heatmap-collector",
-    "version": "0.0.1",
-    "description": "A collector application for mouse and scroll events",
-    "dependencies": {
-        "cors": "^2.8.4",
-        "elasticsearch": "^14.0.0",
-        "express": "^4.16.2",
-        "socket.io": "^2.0.4"
-    }
+  "name": "heatmap-collector",
+  "version": "1.0.0-0",
+  "description": "A collector application for mouse and scroll events",
+  "dependencies": {
+    "cors": "^2.8.4",
+    "elasticsearch": "^14.0.0",
+    "express": "^4.16.2",
+    "socket.io": "^2.0.4"
+  }
 }
