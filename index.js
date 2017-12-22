@@ -56,6 +56,44 @@ app.get('/return', function(req, res) {
       }).catch(res.json)
 })
 
+app.get('/return/scrolmap', function(req, res) {
+    client.search({
+        index: 'heatmap-collector',
+        type: 'scroll-activity',
+        body: {
+            "aggs": {
+                "height": {
+                    "histogram": {
+                        "field": "height",
+                        "interval": 20,
+                        "min_doc_count": 1
+                    },
+                    "aggs": {
+                        "scrollY": {
+                            "histogram": {
+                                "field": "scrollY",
+                                "interval": 20,
+                                "min_doc_count": 1
+                            }
+                        }
+                    }
+                }
+            }
+        }
+      }).then((results) => {
+          const arr = []
+          results.aggregations['height'].buckets.forEach(x => {
+            const scrolly = {}
+            x['scrollY'].buckets.forEach(y => scrolly[y.key] = y.doc_count)
+            arr.push({
+                height: x.key,
+                scrolly: scrolly,
+              })
+          });
+          res.json(arr)
+      }).catch(res.json)
+})
+
 io.on('connection', function(socket){
     console.log('a user connected');
     socket.on('disconnect', function(){
@@ -66,6 +104,14 @@ io.on('connection', function(socket){
         client.index({
             index: 'heatmap-collector',
             type: 'mouse-activity',
+            body,
+        })
+    })
+
+    socket.on('scroll event', (body) => {
+        client.index({
+            index: 'heatmap-collector',
+            type: 'scroll-activity',
             body,
         })
     })
