@@ -6,7 +6,7 @@ COPY ./ ./
 
 # Install app dependencies
 ENV NPM_CONFIG_LOGLEVEL warn
-RUN yarn install --production
+RUN yarn install --frozen-lockfile --no-cache --production
 
 # Show current folder structure in logs
 RUN ls -al
